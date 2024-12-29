@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings | Book Lending Management Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'BoLeMas_app/styles.css' %}">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background-color: #343a40;
+            color: white;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+
+        .sidebar h4 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px 0;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        /* Header */
+       
+
+       
+        /* Content */
+        .content {
+            margin-left: 250px;
+            margin-top: 80px;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+           
+
+            .content {
+                margin-left: 200px;
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: static;
+            }
+
+          
+            .content {
+                margin-left: 0;
+            }
+        }
+
+        /* Card Responsiveness */
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .card-body {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+   
+    {% include 'BoLeMas_app/sidebar.html' %}
+
+    <!-- Header -->
+    {% include 'BoLeMas_app/header.html' %}
+
+    <!-- Content -->
+    <div class="content">
+        <div class="row">
+            <!-- Library Settings Section -->
+            <div class="col-lg-6 col-md-12 mt-4">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Library Settings</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="librarySettingsForm">
+                            <div class="mb-3">
+                                <label for="maxBooksLimit" class="form-label">Max Books Borrowed Per Member</label>
+                                <input type="number" class="form-control" id="maxBooksLimit" value="5" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loanDuration" class="form-label">Loan Duration (in days)</label>
+                                <input type="number" class="form-control" id="loanDuration" value="14" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="penaltyRate" class="form-label">Penalty Rate (per day late in $)</label>
+                                <input type="number" class="form-control" id="penaltyRate" value="2" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Library Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Member Settings Section -->
+            <div class="col-lg-6 col-md-12 mt-4">
+                <div class="card shadow">
+                    <div class="card-header bg-success text-white">
+                        <h4>Member Settings</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="memberSettingsForm">
+                            <div class="mb-3">
+                                <label for="membershipDuration" class="form-label">Membership Duration (in years)</label>
+                                <input type="number" class="form-control" id="membershipDuration" value="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="membershipFee" class="form-label">Membership Fee (in $)</label>
+                                <input type="number" class="form-control" id="membershipFee" value="50" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Member Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Notification Settings Section -->
+            <div class="col-lg-6 col-md-12 mt-4">
+                <div class="card shadow">
+                    <div class="card-header bg-warning text-white">
+                        <h4>Notification Settings</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="notificationSettingsForm">
+                            <div class="mb-3">
+                                <label for="dueReminderDays" class="form-label">Days Before Due Date to Send Reminder</label>
+                                <input type="number" class="form-control" id="dueReminderDays" value="3" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lateReminderDays" class="form-label">Days After Due Date to Send Late Reminder</label>
+                                <input type="number" class="form-control" id="lateReminderDays" value="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="enableLateNotification" class="form-label">Enable Late Notification</label>
+                                <select class="form-control" id="enableLateNotification">
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save Notification Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- System Settings Section -->
+            <div class="col-lg-6 col-md-12 mt-4">
+                <div class="card shadow">
+                    <div class="card-header bg-danger text-white">
+                        <h4>System Settings</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="systemSettingsForm">
+                            <div class="mb-3">
+                                <label for="backupFrequency" class="form-label">Backup Frequency (in days)</label>
+                                <input type="number" class="form-control" id="backupFrequency" value="7" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="systemStatus" class="form-label">System Status</label>
+                                <select class="form-control" id="systemStatus">
+                                    <option value="active">Active</option>
+                                    <option value="maintenance">Maintenance</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save System Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="{% static 'BoLeMas/scripts.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

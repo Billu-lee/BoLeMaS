@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    <link rel="stylesheet" href="{% static 'BoLeMas_app/styles.css' %}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+        }
+
+        .container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container input {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .container button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .container button:hover {
+            background-color: #0056b3;
+        }
+
+        .register-link {
+            color: #007BFF;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .popup .popup-content button.close-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            float: right;
+            margin-top: -10px;
+            margin-right: -10px;
+            border-radius: 50%;
+        }
+
+        .popup .popup-content button.close-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <span class="register-link">Register here</span></p>
+    </div>
+
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">&times;</button>
+            <h1>Register</h1>
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'BoLeMas/scripts.js' %}"></script>
+    <script>
+        const popup = document.getElementById('popup');
+        const registerLink = document.querySelector('.register-link');
+
+        registerLink.addEventListener('click', () => {
+            popup.style.display = 'flex';
+        });
+
+        function closePopup() {
+            popup.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

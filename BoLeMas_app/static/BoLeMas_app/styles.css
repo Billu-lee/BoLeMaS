@@ -1,0 +1,81 @@
+
+
+
+/* General body styling */
+body {
+    display: flex;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: scroll; /* Ensures vertical scrolling */
+}
+
+.content {
+    padding: 20px;
+    overflow: auto;
+}
+
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    font-size: 16px;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+}
+
+/* Header styling */
+.header {
+    width: 100%;
+    position: fixed;
+    background-color: #21415e;
+    padding: 15px 20px;
+    color: rgb(31, 36, 36);
+    z-index: 1000;
+    left: 250px;
+    text-align: center;
+}
+
+/* Content section styling */
+.content {
+    margin-left: 250px;
+    margin-top: 70px;
+    padding: 40px;
+    flex: 1;
+}
+
+/* Widgets styling */
+.widgets .card {
+    margin-bottom: 20px;
+}
+
+/* Recent Borrowers Section */
+.recent-borrowers h4 {
+    margin-bottom: 10px;
+}
+
+#recentBorrowers .list-group-item {
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+}
